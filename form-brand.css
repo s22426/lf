@@ -1,150 +1,159 @@
-/* form-brand.css - poprawiona wersja
-   Kolory: czerwony firmowy #b6111b, jasnoszary nagłówek, delikatne szarości.
-   Font: Poppins (wymuszony).
+/* form-brand.css — styl firmowy Logifact-Systems
+   Kolor bazowy: #b6111b
+   Font: Poppins
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --brand-primary: #b6111b;
-  --brand-primary-rgb: 182,17,27;
-  --brand-grey-light: #f5f5f5;   /* kolor tła nagłówka */
-  --brand-grey-border: #e2e3e5;
-  --brand-text: #222;
+  --brand-primary: #b6111b;     /* kolor firmowy */
+  --brand-primary-light: #c9333c;
   --brand-bg: #fff;
-  --brand-radius: 8px;
-  --brand-font: 'Poppins', 'Segoe UI', system-ui, Arial, sans-serif;
+  --brand-card: #d9444e;        /* jasny bordowy do kart */
+  --brand-border: #e4e4e4;
+  --brand-radius: 10px;
+  --brand-font: 'Poppins', system-ui, Arial, sans-serif;
 }
 
-/* Global font and base */
+/* GLOBAL */
 body, .formio, .formio-form {
   font-family: var(--brand-font) !important;
-  background: #fafafa;
-  color: var(--brand-text);
+  background: #f7f7f7;
+  color: #222;
+  font-size: 0.92rem;
+  letter-spacing: 0.1px;
 }
 
-/* Navbar (jasnoszary, lekko przezroczysty) */
+/* 🔻 Pasek z logiem i tytułem */
 .navbar {
-  background: var(--brand-grey-light) !important;
-  color: var(--brand-text) !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.navbar .navbar-brand, .navbar .navbar-text, .navbar a {
-  color: var(--brand-text) !important;
-  font-weight: 600;
-}
-.navbar .navbar-brand img {
-  height: 44px;
-  object-fit: contain;
+  background: var(--brand-primary) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  position: relative;
 }
 
-/* Cards / panels */
+/* logo po lewej */
+.navbar .navbar-brand {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* tytuł wyśrodkowany */
+.navbar .navbar-text {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* 🔻 Karty / panele */
 .panel, .card, .formio-panel {
-  background: var(--brand-bg);
-  border: 1px solid var(--brand-grey-border);
+  background: var(--brand-card);
+  color: #fff;
+  border: none;
   border-radius: var(--brand-radius);
-  padding: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  margin-bottom: 16px;
 }
 
-/* Tables */
-.table, table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--brand-bg);
-  border: 1px solid var(--brand-grey-border);
-  border-radius: 6px;
-  overflow: hidden;
-  table-layout: fixed; /* kolumny nie będą się przesuwać */
-}
-.table thead th {
-  background: #fafafa; /* lekko szare nagłówki tabel */
+.panel-title, .card-header {
+  color: #fff;
   font-weight: 600;
-  border-bottom: 1px solid var(--brand-grey-border);
-  padding: 10px 12px;
-  text-align: left;
-}
-.table tbody td {
-  border-bottom: 1px solid #f0f0f0;
-  padding: 10px 12px;
-  vertical-align: middle;
-  word-wrap: break-word;
-}
-.table tbody tr:last-child td {
-  border-bottom: 0;
-}
-.table tbody tr:hover td {
-  background: #fcfcfc;
+  font-size: 1rem;
 }
 
-/* Inputs */
-.form-control, input[type="text"], input[type="email"], select {
-  border: 1px solid var(--brand-grey-border);
-  border-radius: 6px;
-  padding: .55rem .75rem;
+/* 🔻 Pola do wpisywania */
+input[type="text"], input[type="email"], textarea, select {
+  font-family: var(--brand-font);
   width: 100%;
-  box-sizing: border-box;
-  font-family: var(--brand-font) !important;
-  transition: border-color .12s ease, box-shadow .12s ease;
-}
-.form-control:focus, input:focus, select:focus {
-  border-color: var(--brand-primary);
-  box-shadow: 0 0 0 0.12rem rgba(var(--brand-primary-rgb), 0.1);
-}
-
-/* Textarea – auto height + equal line height */
-textarea.form-control, textarea {
-  line-height: 1.5;
-  min-height: 48px;
+  border: 1px solid var(--brand-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
   resize: none;
   overflow: hidden;
-  font-family: var(--brand-font) !important;
-  border: 1px solid var(--brand-grey-border);
-  border-radius: 6px;
-  padding: .55rem .75rem;
+  min-height: 38px;
 }
 
-/* Buttons */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 0.1rem rgba(182,17,27,0.2);
+}
+
+/* 🔻 Tabele */
+.table, table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border: 1px solid var(--brand-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 24px; /* więcej miejsca pod tabelą */
+}
+
+.table thead th {
+  background: #f3f3f3;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+.table tbody td {
+  padding: 8px 12px;
+  border-top: 1px solid #eaeaea;
+  vertical-align: middle;
+  color: #222;
+  background: #fff;
+}
+
+.table tbody tr:hover td {
+  background: #fafafa;
+}
+
+/* 🔻 Zaokrąglenia boków tabeli */
+.table tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+.table tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+.table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+.table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* 🔻 Przycisk */
 .btn, .button {
   border-radius: 6px;
-  font-weight: 600;
-  font-family: var(--brand-font) !important;
-  padding: 8px 16px;
-}
-.btn-primary {
   background: var(--brand-primary);
-  border-color: var(--brand-primary);
+  border: none;
   color: #fff;
-}
-.btn-primary:hover {
-  background: #990f13;
-}
-
-/* Form section titles / headers */
-h1, h2, h3, h4 {
-  font-family: var(--brand-font) !important;
-  color: var(--brand-primary);
+  padding: 8px 16px;
   font-weight: 600;
+  font-family: var(--brand-font);
+}
+.btn:hover {
+  background: var(--brand-primary-light);
 }
 
-/* Table cells stay same width while typing */
-input, textarea {
-  width: 100%;
-}
-
-/* Error states */
-.has-error .form-control, .formio-error input {
-  border-color: #d9534f;
-}
-
-/* Small helper text */
-.help-block {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* Responsive */
+/* 🔻 Responsywność */
 @media (max-width: 768px) {
-  .table thead { display: none; }
-  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
-  .table tbody td { border: none; border-bottom: 1px solid #eee; }
+  .navbar .navbar-text {
+    font-size: 1rem;
+  }
+  .panel, .card {
+    padding: 12px;
+  }
 }
