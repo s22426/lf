@@ -1,209 +1,150 @@
-/* form-brand.css
-   Brand: Poppins
-   Primary color (red): #b6111b (182,17,27)
-   Additional: navy, black, grey palette
+/* form-brand.css - poprawiona wersja
+   Kolory: czerwony firmowy #b6111b, jasnoszary nagłówek, delikatne szarości.
+   Font: Poppins (wymuszony).
 */
 
-/* load Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-:root{
-  --brand-primary: #b6111b;        /* firmowy czerwony */
+:root {
+  --brand-primary: #b6111b;
   --brand-primary-rgb: 182,17,27;
-  --brand-navy:     #0b2340;       /* granatowy (ciemny) */
-  --brand-dark:     #0b0b0b;       /* praktycznie czarny */
-  --brand-grey-100: #f6f7f8;
-  --brand-grey-200: #efefef;
-  --brand-grey-300: #d8dbe0;
-  --brand-border:   #e6e9ec;
-  --brand-muted:    #6b6f73;
-  --brand-bg:       #ffffff;
-  --brand-page-bg:  #f5f6f7;
-  --brand-radius:   8px;
-  --brand-font:     'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --brand-grey-light: #f5f5f5;   /* kolor tła nagłówka */
+  --brand-grey-border: #e2e3e5;
+  --brand-text: #222;
+  --brand-bg: #fff;
+  --brand-radius: 8px;
+  --brand-font: 'Poppins', 'Segoe UI', system-ui, Arial, sans-serif;
 }
 
-/* ---------- Global ---------- */
-html, body, .formio, .formio-form {
-  font-family: var(--brand-font);
-  background: var(--brand-page-bg);
-  color: #222;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+/* Global font and base */
+body, .formio, .formio-form {
+  font-family: var(--brand-font) !important;
+  background: #fafafa;
+  color: var(--brand-text);
 }
 
-/* ---------- Navbar & Header ---------- */
+/* Navbar (jasnoszary, lekko przezroczysty) */
 .navbar {
-  background: linear-gradient(180deg, var(--brand-navy), rgba(11,35,64,0.95)) !important;
-  color: #fff !important;
-  box-shadow: 0 2px 8px rgba(11,35,64,0.08);
+  background: var(--brand-grey-light) !important;
+  color: var(--brand-text) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .navbar .navbar-brand, .navbar .navbar-text, .navbar a {
-  color: #fff !important;
+  color: var(--brand-text) !important;
   font-weight: 600;
 }
-.navbar .navbar-brand img { height: 40px; object-fit: contain; }
+.navbar .navbar-brand img {
+  height: 44px;
+  object-fit: contain;
+}
 
-/* ---------- Panels / Cards ---------- */
+/* Cards / panels */
 .panel, .card, .formio-panel {
   background: var(--brand-bg);
-  border: 1px solid var(--brand-border);
+  border: 1px solid var(--brand-grey-border);
   border-radius: var(--brand-radius);
   padding: 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-/* ---------- Tables: delikatne szare linie ---------- */
+/* Tables */
 .table, table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   background: var(--brand-bg);
-  border: 1px solid var(--brand-border);
+  border: 1px solid var(--brand-grey-border);
   border-radius: 6px;
   overflow: hidden;
-  font-size: 0.95rem;
+  table-layout: fixed; /* kolumny nie będą się przesuwać */
 }
 .table thead th {
-  background: var(--brand-bg);
+  background: #fafafa; /* lekko szare nagłówki tabel */
   font-weight: 600;
-  border-bottom: 1px solid var(--brand-border);
+  border-bottom: 1px solid var(--brand-grey-border);
   padding: 10px 12px;
-  color: var(--brand-dark);
+  text-align: left;
 }
 .table tbody td {
-  border-bottom: 1px solid #efefef; /* delikatne linie między wierszami */
+  border-bottom: 1px solid #f0f0f0;
   padding: 10px 12px;
   vertical-align: middle;
-  color: #222;
+  word-wrap: break-word;
 }
 .table tbody tr:last-child td {
   border-bottom: 0;
 }
 .table tbody tr:hover td {
-  background: #fbfbfb;
+  background: #fcfcfc;
 }
 
-/* If table is used as key/value config UI */
-.config-row { display: flex; gap: 8px; align-items: center; }
-.config-row .key { width: 30%; font-weight:600; color:var(--brand-muted); }
-.config-row .value { flex:1; }
-
-/* ---------- Labels / helper text ---------- */
-label, .form-label {
-  font-weight: 500;
-  color: #232323;
-}
-.form-text, .help-block { color: var(--brand-muted); font-size: .92rem; }
-
-/* ---------- Inputs ---------- */
-.form-control, input[type="text"], input[type="email"], input[type="tel"], select {
-  border: 1px solid var(--brand-border);
+/* Inputs */
+.form-control, input[type="text"], input[type="email"], select {
+  border: 1px solid var(--brand-grey-border);
   border-radius: 6px;
   padding: .55rem .75rem;
-  transition: border-color .12s ease, box-shadow .12s ease;
-  background: var(--brand-bg);
   width: 100%;
   box-sizing: border-box;
-  font-family: var(--brand-font);
-  font-size: .98rem;
+  font-family: var(--brand-font) !important;
+  transition: border-color .12s ease, box-shadow .12s ease;
 }
 .form-control:focus, input:focus, select:focus {
   border-color: var(--brand-primary);
-  box-shadow: 0 0 0 0.12rem rgba(var(--brand-primary-rgb), 0.08);
-  outline: none;
+  box-shadow: 0 0 0 0.12rem rgba(var(--brand-primary-rgb), 0.1);
 }
 
-/* ---------- Textareas (auto-height handled by JS) ---------- */
+/* Textarea – auto height + equal line height */
 textarea.form-control, textarea {
-  min-height: 54px;
-  max-height: 60vh;
-  overflow: hidden; /* hide scrollbar: JS will expand */
-  resize: none;
   line-height: 1.5;
+  min-height: 48px;
+  resize: none;
+  overflow: hidden;
+  font-family: var(--brand-font) !important;
+  border: 1px solid var(--brand-grey-border);
+  border-radius: 6px;
   padding: .55rem .75rem;
 }
 
-/* ---------- Contenteditable fields ---------- */
-[contenteditable].form-control, [contenteditable].editable {
-  min-height: 48px;
-  padding: .5rem .7rem;
-  border: 1px solid var(--brand-border);
-  border-radius: 6px;
-  background: var(--brand-bg);
-  display: block;
-}
-[contenteditable].form-control:focus, [contenteditable].editable:focus {
-  border-color: var(--brand-primary);
-  box-shadow: 0 0 0 0.12rem rgba(var(--brand-primary-rgb), 0.08);
-}
-
-/* ---------- Buttons ---------- */
+/* Buttons */
 .btn, .button {
   border-radius: 6px;
-  padding: 9px 16px;
   font-weight: 600;
-  font-family: var(--brand-font);
+  font-family: var(--brand-font) !important;
+  padding: 8px 16px;
 }
-.btn-primary, .button-primary {
+.btn-primary {
   background: var(--brand-primary);
   border-color: var(--brand-primary);
   color: #fff;
 }
 .btn-primary:hover {
   background: #990f13;
-  border-color: #990f13;
 }
 
-/* Additional button variants */
-.btn-navy { background: var(--brand-navy); border-color: var(--brand-navy); color:#fff; }
-.btn-dark { background: var(--brand-dark); border-color: var(--brand-dark); color:#fff; }
-.btn-outline { background: transparent; border:1px solid var(--brand-border); color:var(--brand-dark); }
-
-/* ---------- Button bar separation ---------- */
-.formio-button-bar {
-  margin-top: 18px;
-  border-top: 1px solid var(--brand-border);
-  padding-top: 12px;
-  background: transparent;
-}
-
-/* ---------- Alerts ---------- */
-.alert {
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-weight:500;
-  border: 1px solid transparent;
-}
-.alert-info { background: #f4f6fb; border-color: #dfe9fb; color: var(--brand-navy); }
-.alert-success { background: #f3fbf6; border-color: #d6f0df; color: #1b6b3b; }
-.alert-warning { background: #fffaf0; border-color: #ffeec9; color: #7a5600; }
-.alert-danger { background: #fff5f5; border-color: #fccfcf; color: #9b1e1e; }
-
-/* ---------- Errors ---------- */
-.has-error .help-block, .formio-error { color: #c62828; }
-
-/* ---------- Small polish ---------- */
-.label-inline { display:inline-block; margin-right:8px; color:var(--brand-muted); }
-.small-muted { color:var(--brand-muted); font-size:.9rem; }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 767px) {
-  .panel, .card { padding: 12px; }
-  .table thead { display: none; }
-  .table tbody td { display: block; width: 100%; box-sizing: border-box; }
-  .table tbody td::before { content: attr(data-label); font-weight:600; display:block; margin-bottom:6px; color: #444; }
-}
-
-/* ---------- Utilities you may use in custom components ---------- */
-.text-muted { color: var(--brand-muted); }
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mt-2 { margin-top: 0.5rem; }
-
-/* ---------- Optional: highlight required fields ---------- */
-.formio-component .control-label .required {
+/* Form section titles / headers */
+h1, h2, h3, h4 {
+  font-family: var(--brand-font) !important;
   color: var(--brand-primary);
-  margin-left:6px;
-  font-weight:700;
+  font-weight: 600;
+}
+
+/* Table cells stay same width while typing */
+input, textarea {
+  width: 100%;
+}
+
+/* Error states */
+.has-error .form-control, .formio-error input {
+  border-color: #d9534f;
+}
+
+/* Small helper text */
+.help-block {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table tbody td { border: none; border-bottom: 1px solid #eee; }
 }
