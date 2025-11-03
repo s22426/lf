@@ -183,4 +183,51 @@ html body, body, .formio, .formio * {
   color: inherit !important;
 }
 
+/* ==== Force center white title specifically for span.fs-4.text-wrap ==== */
+
+/* make sure navbar is positioning context */
+.formio .navbar,
+.formio nav.navbar,
+.formio header.navbar {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* keep logo on the left */
+.formio .navbar .navbar-brand,
+.formio nav.navbar .navbar-brand,
+.formio .navbar-brand img {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 1010 !important;
+}
+
+/* target the exact span you pasted */
+.formio .navbar span.fs-4.text-wrap,
+.formio nav.navbar span.fs-4.text-wrap,
+.formio header.navbar span.fs-4.text-wrap {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  color: #ffffff !important;         /* FORCE white */
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  text-align: center !important;
+  z-index: 1005 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;   /* nie łapiemy kliknięć przez tytuł */
+}
+
+/* responsive: zmniejsz czcionkę kiedy brak miejsca */
+@media (max-width: 640px) {
+  .formio .navbar span.fs-4.text-wrap {
+    font-size: 0.98rem !important;
+    padding: 0 8px !important;
+  }
+}
+
+
 /* END of overrides */
