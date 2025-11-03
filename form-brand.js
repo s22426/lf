@@ -1,60 +1,61 @@
-// form-brand.js — autosize + dynamic watcher
+// form-brand.js - ensure center white title and logo left even if Form.io injects markup later
 (function(){
   'use strict';
 
-  function autosizeEl(el){
-    if (!el) return;
-    // we only autosize textarea and text inputs
-    if (el.tagName.toLowerCase() === 'textarea' || (el.tagName.toLowerCase() === 'input' && el.type === 'text')) {
-      el.style.height = 'auto';
-      // set height to scrollHeight (add small padding)
-      el.style.height = (el.scrollHeight + 4) + 'px';
+  function fixNavbar(){
+    var navbar = document.querySelector('.formio nav.navbar') || document.querySelector('.formio .navbar') || document.querySelector('nav.navbar') || document.querySelector('.form-header') || document.querySelector('header');
+    if(!navbar) return false;
+
+    // logo left
+    var lb = navbar.querySelector('.navbar-brand, .logo, img');
+    if(lb){
+      lb.style.position = 'absolute';
+      lb.style.left = '14px';
+      lb.style.top = '50%';
+      lb.style.transform = 'translateY(-50%)';
+      lb.style.zIndex = '1010';
     }
+
+    // find title element
+    var title = navbar.querySelector('.navbar-text, .navbar-title, .header-title, .form-header .title, h1, h2, h3');
+    if(!title){
+      // create if missing
+      title = document.createElement('div');
+      title.className = 'custom-centered-title';
+      // if there's a configured title in Form.io, try to reuse it
+      var cfg = document.title || 'ANKIETA WSTĘPNA WMS';
+      title.textContent = cfg || 'ANKIETA WSTĘPNA WMS';
+      navbar.appendChild(title);
+    }
+
+    // apply styles
+    title.style.color = '#fff';
+    title.style.position = 'absolute';
+    title.style.left = '50%';
+    title.style.top = '50%';
+    title.style.transform = 'translate(-50%, -50%)';
+    title.style.fontWeight = '600';
+    title.style.fontSize = '1.15rem';
+    title.style.zIndex = '1005';
+    title.style.whiteSpace = 'nowrap';
+    return true;
   }
 
-  function initAll(root){
-    root = root || document;
-    // all textareas + text inputs
-    var nodes = root.querySelectorAll('textarea, input[type="text"]');
-    nodes.forEach(function(n){
-      // skip if explicitly disabled
-      if (n.getAttribute('data-autosize') === 'false') return;
-      // initial
-      autosizeEl(n);
-      // bind event (use input for immediate update)
-      if (!n._autosizeBound) {
-        n.addEventListener('input', function(){ autosizeEl(n); }, false);
-        n._autosizeBound = true;
+  // try immediately
+  if(!fixNavbar()){
+    // observe DOM for changes (Form.io may inject elements later)
+    var mo = new MutationObserver(function(mutations){
+      if(fixNavbar()){
+        mo.disconnect();
       }
     });
+    mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
   }
 
-  // run on load
-  window.addEventListener('load', function(){ initAll(document); });
-
-  // also run on DOMContentLoaded
-  document.addEventListener('DOMContentLoaded', function(){ initAll(document); });
-
-  // Watch for dynamically added nodes (Form.io often injects fields)
-  var observer = new MutationObserver(function(mutations){
-    mutations.forEach(function(m){
-      if (m.addedNodes && m.addedNodes.length) {
-        m.addedNodes.forEach(function(n){
-          if (n.nodeType !== 1) return;
-          // if a container or direct input/textarea added — init inside it
-          if (n.matches && (n.matches('textarea') || n.matches('input[type="text"]'))) {
-            initAll(n.parentNode || n);
-          } else {
-            initAll(n);
-          }
-        });
-      }
-    });
-  });
-
-  observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
-
-  // Extra: re-init on window resize
-  window.addEventListener('resize', function(){ initAll(document); });
+  // backup: reapply on window resize (responsive)
+  window.addEventListener('resize', function(){ fixNavbar(); });
+  // also try after a small delay (some SPAs render late)
+  setTimeout(fixNavbar, 600);
+  setTimeout(fixNavbar, 1600);
 
 })();
