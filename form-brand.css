@@ -1,18 +1,15 @@
-/* === LOGIFACT CUSTOM FORM.IO THEME === */
+/* === LOGIFACT CUSTOM FORM.IO THEME (no external fonts) === */
 
-/* Import czcionki Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-/* Reset i czcionka globalna */
+/* Reset i ogólne ustawienia */
 html body, body, .formio, .formio * {
-  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   box-sizing: border-box !important;
   color: #222 !important;
 }
 
 /* Pasek z logiem i tytułem */
 .formio .navbar {
-  background: #b6111b !important;
+  background: #b6111b !important; /* kolor firmowy Logifact */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -35,13 +32,13 @@ html body, body, .formio, .formio * {
   margin: 0 auto !important;
 }
 
-/* Ogólne rozmieszczenie */
+/* Główne tło i odstępy */
 .formio {
   padding: 24px 32px !important;
   background-color: #fff !important;
 }
 
-/* Panel / karta */
+/* Karty / panele */
 .formio .card,
 .formio .panel,
 .formio .formio-panel {
@@ -63,14 +60,13 @@ html body, body, .formio, .formio * {
   border-radius: 10px 10px 0 0 !important;
 }
 
-/* Pola tekstowe i selecty */
+/* Pola tekstowe, selecty itp. */
 .formio input[type="text"],
 .formio input[type="email"],
 .formio input[type="number"],
 .formio textarea,
 .formio select,
 .formio .form-control {
-  font-family: 'Poppins', sans-serif !important;
   font-size: 0.92rem !important;
   padding: 6px 10px !important;
   border: 1px solid #ccc !important;
@@ -92,7 +88,7 @@ html body, body, .formio, .formio * {
   overflow: hidden !important;
 }
 
-/* Mniejsze odstępy między polami */
+/* Odstępy między polami */
 .formio .form-group,
 .formio .formio-component {
   margin-bottom: 10px !important;
@@ -141,7 +137,6 @@ html body, body, .formio, .formio * {
 .formio .button {
   border-radius: 6px !important;
   font-weight: 600 !important;
-  font-family: 'Poppins', sans-serif !important;
 }
 .formio .btn-primary,
 .formio .button-primary {
@@ -154,7 +149,7 @@ html body, body, .formio, .formio * {
   border-color: #a21018 !important;
 }
 
-/* Odstępy i czytelność */
+/* Nagłówki i etykiety */
 .formio h1, .formio h2, .formio h3, .formio h4 {
   color: #b6111b !important;
   font-weight: 600 !important;
@@ -163,4 +158,19 @@ html body, body, .formio, .formio * {
 .formio label {
   font-weight: 500 !important;
   margin-bottom: 3px !important;
+}
+
+/* Odstęp między sekcjami */
+.formio .formio-component-panel {
+  margin-bottom: 22px !important;
+}
+
+/* Dodatkowe ulepszenia layoutu */
+.formio .formio-component {
+  line-height: 1.4 !important;
+}
+.formio table input,
+.formio table textarea {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
 }
