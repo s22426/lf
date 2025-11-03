@@ -174,3 +174,58 @@ html body, body, .formio, .formio * {
   min-width: 0 !important;
   box-sizing: border-box !important;
 }
+
+/* === Force centered white title with logo on the left === */
+.formio .navbar { position: relative !important; }
+
+/* ensure logo stays left */
+.formio .navbar .navbar-brand {
+  position: absolute !important;
+  left: 18px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+}
+
+/* center any title text in the navbar and force white color */
+.formio .navbar .navbar-text,
+.formio .navbar .navbar-title,
+.formio .navbar .navbar-brand + .navbar-text,
+.formio .navbar .navbar-brand + .navbar-title,
+.formio .navbar .navbar-header,
+.formio .navbar .navbar-brand span,
+.formio .navbar .navbar-brand ~ * {
+  color: #ffffff !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  text-align: center !important;
+  z-index: 4 !important;
+  white-space: nowrap !important; /* nie łamiemy tytułu */
+}
+
+/* jeśli tytuł jest w elemencie <h*> we też go ustawiamy */
+.formio .navbar h1,
+.formio .navbar h2,
+.formio .navbar h3,
+.formio .navbar h4 {
+  color: #fff !important;
+  margin: 0 !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 4 !important;
+}
+
+/* dopasowanie responsywne: zmniejsz font jeśli brak miejsca */
+@media (max-width: 640px) {
+  .formio .navbar .navbar-text,
+  .formio .navbar h1 {
+    font-size: 0.98rem !important;
+    padding: 0 8px !important;
+  }
+}
