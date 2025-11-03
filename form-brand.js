@@ -59,3 +59,50 @@
   setTimeout(fixNavbar, 1600);
 
 })();
+
+// backup: ensure span.fs-4.text-wrap is centered and white
+(function(){
+  function styleTitle(){
+    var navbar = document.querySelector('.formio .navbar') || document.querySelector('nav.navbar') || document.querySelector('header.navbar');
+    if(!navbar) return false;
+    navbar.style.position = navbar.style.position || 'relative';
+
+    var logo = navbar.querySelector('.navbar-brand, .logo, img');
+    if(logo){
+      logo.style.position = 'absolute';
+      logo.style.left = '16px';
+      logo.style.top = '50%';
+      logo.style.transform = 'translateY(-50%)';
+      logo.style.zIndex = '1010';
+    }
+
+    var span = navbar.querySelector('span.fs-4.text-wrap');
+    if(span){
+      span.style.position = 'absolute';
+      span.style.left = '50%';
+      span.style.top = '50%';
+      span.style.transform = 'translate(-50%, -50%)';
+      span.style.color = '#fff';
+      span.style.fontWeight = '600';
+      span.style.fontSize = '1.15rem';
+      span.style.zIndex = '1005';
+      span.style.whiteSpace = 'nowrap';
+      span.style.pointerEvents = 'none';
+      return true;
+    }
+    return false;
+  }
+
+  if(!styleTitle()){
+    var mo = new MutationObserver(function(){
+      if(styleTitle()){
+        mo.disconnect();
+      }
+    });
+    mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
+    // try again a couple of times
+    setTimeout(styleTitle, 600);
+    setTimeout(styleTitle, 1600);
+  }
+})();
+
