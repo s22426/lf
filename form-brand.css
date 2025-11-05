@@ -1,233 +1,33 @@
-/* form-brand.css - Logifact overrides tuned for Bootstrap/Form.io
-   Purpose: override Bootstrap rules that Form.io loads and force brand look.
-*/
+// === INJECT CSS for header branding ===
+const style = document.createElement('style');
+style.innerHTML = `
+:root { --brand: #b6111b; }
 
-/* Base fallback font (no external fonts) */
-html body, body, .formio, .formio * {
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  box-sizing: border-box !important;
-  color: #222 !important;
-}
-
-/* ----- NAVBAR: force brand bar, logo left, centered white title ----- */
-.formio nav.navbar,
-.formio .navbar,
-.formio header.navbar {
-  background-color: #b6111b !important;
-  position: relative !important;
+.lf-topheader,
+.lf-topheader .formio-component-content,
+.lf-topheader h1, .lf-topheader h2, .lf-topheader h3 {
+  background: var(--brand) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 14px 20px !important;
+  border-radius: 8px !important;
+  margin: 0 0 16px 0 !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  padding: 10px 0 !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
-  z-index: 1000 !important;
+  gap: 16px !important;
+  line-height: 1.2 !important;
 }
 
-/* ensure logo stays left */
-.formio .navbar .navbar-brand,
-.formio nav.navbar .navbar-brand,
-.formio .navbar-brand img {
-  position: absolute !important;
-  left: 14px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 1010 !important;
+.lf-topheader::before,
+.lf-topheader .formio-component-content::before,
+.lf-topheader h1::before, .lf-topheader h2::before, .lf-topheader h3::before {
+  content: "";
+  display: inline-block;
+  width: 140px;
+  height: 40px;
+  background: url("https://i.postimg.cc/YqCxRpT4/logifact-logo.png") no-repeat center / contain;
 }
 
-/* center any title text in the navbar and force white color */
-.formio .navbar .navbar-text,
-.formio .navbar .navbar-title,
-.formio nav.navbar .navbar-text,
-.formio nav.navbar .navbar-title,
-.formio .form-header .title,
-.formio .form-header h1,
-.formio .form-header h2,
-.formio .form-header h3,
-.formio .navbar .navbar-brand + .navbar-text,
-.formio .navbar .navbar-brand + .navbar-title {
-  color: #fff !important;
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  font-weight: 600 !important;
-  font-size: 1.15rem !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  z-index: 1005 !important;
-}
-
-/* If title is an H element inside navbar */
-.formio .navbar h1, .formio .navbar h2, .formio .navbar h3 {
-  color: #fff !important;
-  margin: 0 !important;
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 1005 !important;
-}
-
-/* ----- PANELS / CARDS: light bordo headings, white body ----- */
-.formio .panel, .formio .panel-default, .formio .card, .formio .formio-panel {
-  background: #fff !important;
-  border: 1px solid #e6e6e6 !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
-  margin-bottom: 18px !important;
-}
-
-/* Card header (jasny bordowy, white text optionally) */
-.formio .panel-heading,
-.formio .card-header,
-.formio .panel .panel-title,
-.formio .card .card-header {
-  background: #fbe9eb !important; /* light burgundy header */
-  color: #b6111b !important;
-  font-weight: 600 !important;
-  padding: 10px 14px !important;
-  border-bottom: 1px solid #e0e0e0 !important;
-  border-radius: 10px 10px 0 0 !important;
-}
-
-/* ----- Inputs / textareas ----- */
-.formio input.form-control,
-.formio input[type="text"],
-.formio input[type="email"],
-.formio input[type="number"],
-.formio textarea,
-.formio select,
-.formio .form-control {
-  width: 100% !important;
-  padding: 6px 10px !important;
-  min-height: 36px !important;
-  border-radius: 6px !important;
-  border: 1px solid #ccc !important;
-  background: #fff !important;
-  font-size: 0.92rem !important;
-  transition: border-color .12s ease, box-shadow .12s ease !important;
-}
-.formio input:focus,
-.formio textarea:focus,
-.formio select:focus {
-  border-color: #b6111b !important;
-  box-shadow: 0 0 0 2px rgba(182,17,27,0.12) !important;
-  outline: none !important;
-}
-/* prevent input expansion breaking layout */
-.formio table input, .formio table textarea {
-  min-width: 0 !important;
-  box-sizing: border-box !important;
-}
-
-/* ----- Tables: fixed layout, rounded corners, vertical centering ----- */
-.formio table, .formio .table {
-  width: 100% !important;
-  table-layout: fixed !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-  border: 1px solid #e0e0e0 !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  background: #fff !important;
-  margin-bottom: 36px !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
-}
-.formio table thead th, .formio .table thead th {
-  background: #f5f5f5 !important;
-  color: #222 !important;
-  font-weight: 600 !important;
-  padding: 10px 12px !important;
-  border-bottom: 1px solid #e6e6e6 !important;
-  vertical-align: middle !important;
-}
-.formio table tbody td, .formio .table tbody td {
-  padding: 10px 12px !important;
-  vertical-align: middle !important;
-  border-top: 1px solid #f0f0f0 !important;
-  line-height: 1.3 !important;
-  word-break: break-word !important;
-  background: #fff !important;
-}
-.formio table tbody tr:hover td, .formio .table tbody tr:hover td {
-  background: #fafafa !important;
-}
-.formio table thead tr:first-child th:first-child { border-top-left-radius: 10px !important; }
-.formio table thead tr:first-child th:last-child  { border-top-right-radius: 10px !important; }
-.formio table tbody tr:last-child td:first-child  { border-bottom-left-radius: 10px !important; }
-.formio table tbody tr:last-child td:last-child   { border-bottom-right-radius: 10px !important; }
-
-/* ----- Buttons ----- */
-.formio .btn, .formio .button {
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-}
-.formio .btn-primary, .formio .button-primary {
-  background: #b6111b !important;
-  border-color: #b6111b !important;
-  color: #fff !important;
-}
-.formio .btn-primary:hover, .formio .button-primary:hover {
-  background: #a21018 !important;
-  border-color: #a21018 !important;
-}
-
-/* ----- Compact spacing ----- */
-.formio .form-group, .formio .formio-component {
-  margin-bottom: 8px !important;
-  font-size: 0.92rem !important;
-}
-
-/* last resort: inline text color override for any header-like element in navbar */
-.formio nav.navbar * {
-  color: inherit !important;
-}
-
-/* ==== Force center white title specifically for span.fs-4.text-wrap ==== */
-
-/* make sure navbar is positioning context */
-.formio .navbar,
-.formio nav.navbar,
-.formio header.navbar {
-  position: relative !important;
-  z-index: 1000 !important;
-}
-
-/* keep logo on the left */
-.formio .navbar .navbar-brand,
-.formio nav.navbar .navbar-brand,
-.formio .navbar-brand img {
-  position: absolute !important;
-  left: 16px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 1010 !important;
-}
-
-/* target the exact span you pasted */
-.formio .navbar span.fs-4.text-wrap,
-.formio nav.navbar span.fs-4.text-wrap,
-.formio header.navbar span.fs-4.text-wrap {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  color: #ffffff !important;         /* FORCE white */
-  font-weight: 600 !important;
-  font-size: 1.15rem !important;
-  text-align: center !important;
-  z-index: 1005 !important;
-  white-space: nowrap !important;
-  pointer-events: none !important;   /* nie łapiemy kliknięć przez tytuł */
-}
-
-/* responsive: zmniejsz czcionkę kiedy brak miejsca */
-@media (max-width: 640px) {
-  .formio .navbar span.fs-4.text-wrap {
-    font-size: 0.98rem !important;
-    padding: 0 8px !important;
-  }
-}
-
-
-/* END of overrides */
+.lf-topheader h1, .lf-topheader h2, .lf-topheader h3 { margin: 0 !important; }
+`;
+document.head.appendChild(style);
